@@ -48,21 +48,24 @@ def mySort(data,col):
  	#Input: list of dictionaries and col (key) to sort on
  	#Output: Return the first item in the sorted list as a string of just: firstName lastName
 
-data = getData("P1DataA.csv")
-sortedData = mySort(data, "First");
-print(sortedData)
+
+def classSizes(data):
+# Create a histogram
+# Input: list of dictionaries
+# Output: Return a list of tuples sorted by the number of students in that class in
+# descending order
+# [('Senior', 26), ('Junior', 25), ('Freshman', 21), ('Sophomore', 18)]
+
+	classDict = {}
+	for d in data:
+		if d["Class"] in classDict:
+			count = classDict[d["Class"]]
+			classDict[d["Class"]] = count + 1
+		else:
+			classDict[d["Class"]] = 1
+	return(sorted(classDict.items(), key = lambda x: x[1], reverse = True))
 
 
-# def classSizes(data):
-# # Create a histogram
-# # Input: list of dictionaries
-# # Output: Return a list of tuples sorted by the number of students in that class in
-# # descending order
-# # [('Senior', 26), ('Junior', 25), ('Freshman', 21), ('Sophomore', 18)]
-#
-# 	pass
-#
-#
 # def findMonth(a):
 # # Find the most common birth month form this data
 # # Input: list of dictionaries
