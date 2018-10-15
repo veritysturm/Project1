@@ -17,7 +17,7 @@ def getData(fileName):
 	headerLastName = header[1]
 	headerEmail = header[2]
 	headerGrade = header[3]
-	headerDob = header[4]
+	headerDob = header[4].rstrip("\n")
 
 	line = inFile.readline()
 
@@ -37,16 +37,22 @@ def getData(fileName):
 	inFile.close()
 #Ouput: return a list of dictionary objects where
 	return dictList
+
 #the keys are from the first row in the data. and the values are each of the other rows
 
-# def mySort(data,col):
-# # Sort based on key/column
-# #Input: list of dictionaries and col (key) to sort on
-# #Output: Return the first item in the sorted list as a string of just: firstName lastName
-#
-# 	pass
-#
-#
+def mySort(data,col):
+ 	#Sort based on key/column
+	dataByCol = sorted(data, key=lambda x:x[col])
+	nameString = dataByCol[0]["First"] + " " + dataByCol[0]["Last"]
+	return nameString
+ 	#Input: list of dictionaries and col (key) to sort on
+ 	#Output: Return the first item in the sorted list as a string of just: firstName lastName
+
+data = getData("P1DataA.csv")
+sortedData = mySort(data, "First");
+print(sortedData)
+
+
 # def classSizes(data):
 # # Create a histogram
 # # Input: list of dictionaries
