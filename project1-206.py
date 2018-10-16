@@ -66,13 +66,23 @@ def classSizes(data):
 	return(sorted(classDict.items(), key = lambda x: x[1], reverse = True))
 
 
-# def findMonth(a):
-# # Find the most common birth month form this data
-# # Input: list of dictionaries
-# # Output: Return the month (1-12) that had the most births in the data
-#
-# 	pass
-#
+def findMonth(data):
+# Find the most common birth month form this data
+# Input: list of dictionaries
+# Output: Return the month (1-12) that had the most births in the data
+	classDict = {}
+	for d in data:
+		if d["DOB"] in classDict:
+			count = classDict[d["DOB"]]
+			classDict[d["DOB"]] = count + 1
+		else:
+			classDict[d["DOB"]] = 1
+	birthMonthList = (sorted(classDict.items(), key = lambda x: x[1], reverse = True))
+	topBirthMonth = birthMonthList[0]
+	return topBirthMonth[0][0]
+
+print(findMonth(getData("P1DataA.csv")))
+
 # def mySortPrint(a,col,fileName):
 # #Similar to mySort, but instead of returning single
 # #Student, the sorted data is saved to a csv file.
